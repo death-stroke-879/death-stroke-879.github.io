@@ -12,137 +12,137 @@ const QUIZ = [
     fact: "BTS (방탄소년단) debuted in 2013 and became a global sensation! 💜",
     hint: "Their fans are called ARMY and their favourite colour is purple 💜",
   },
-  // {
+  {
 
-  //   level:"Easiest 🌱",
-  //   emoji: "🌍",
-  //   q: "Which country is BTS from?",
-  //   opts: ["Japan", "China", "South Korea", "Thailand"],
-  //   ans: 2,
-  //   fact: "BTS is from South Korea, signed under HYBE (formerly Big Hit)! 🇰🇷",
-  //   hint: "Their language is Korean and the country is in East Asia 🌏"
-  // },
-  // {
-  //   level:"Easiest 🌱",
-  //   emoji: "🔤",
-  //   q: "How do you say 'Hello' in Korean?",
-  //   opts: ["Kamsahamnida", "Annyeonghaseyo", "Saranghae", "Jeongmal"],
-  //   ans: 1,
-  //   fact: "안녕하세요 (Annyeonghaseyo) is the polite way to say Hello in Korean! 👋",
-  //   hint: "It starts with 'An' and is used as a formal greeting 🙏"
-  // },
+    level:"Easiest 🌱",
+    emoji: "🌍",
+    q: "Which country is BTS from?",
+    opts: ["Japan", "China", "South Korea", "Thailand"],
+    ans: 2,
+    fact: "BTS is from South Korea, signed under HYBE (formerly Big Hit)! 🇰🇷",
+    hint: "Their language is Korean and the country is in East Asia 🌏"
+  },
+  {
+    level:"Easiest 🌱",
+    emoji: "🔤",
+    q: "How do you say 'Hello' in Korean?",
+    opts: ["Kamsahamnida", "Annyeonghaseyo", "Saranghae", "Jeongmal"],
+    ans: 1,
+    fact: "안녕하세요 (Annyeonghaseyo) is the polite way to say Hello in Korean! 👋",
+    hint: "It starts with 'An' and is used as a formal greeting 🙏"
+  },
 
-  // // ── EASY (4-6) ───────────────────────────────────────────
-  // {
-  //   level:"Easy 🌿",
-  //   emoji: "🎤",
-  //   q: "Who is the leader of BTS?",
-  //   opts: ["Jungkook", "Suga", "RM", "Jin"],
-  //   ans: 2,
-  //   fact: "RM (Kim Namjoon) is the leader of BTS and is known for his deep lyrics! 🎙️",
-  //   hint: "He is also the main rapper and speaks fluent English 🌟"
-  // },
-  // {
-  //   level:"Easy 🌿",
-  //   emoji: "🌊",
-  //   q: "Which is the largest ocean on Earth?",
-  //   opts: ["Atlantic", "Indian", "Arctic", "Pacific"],
-  //   ans: 3,
-  //   fact: "The Pacific Ocean covers more than 30% of Earth's surface! 🌊",
-  //   hint: "It borders Asia on one side and America on the other 🗺️"
-  // },
-  // {
-  //   level:"Easy 🌿",
-  //   emoji: "❤️",
-  //   q: "How do you say 'I love you' in Korean?",
-  //   opts: ["Mianhae", "Gomawo", "Saranghae", "Annyeong"],
-  //   ans: 2,
-  //   fact: "사랑해 (Saranghae) means I love you in Korean! A word every ARMY knows 💜",
-  //   hint: "BTS members say this to ARMY all the time at concerts 🎶"
-  // },
+  // ── EASY (4-6) ───────────────────────────────────────────
+  {
+    level:"Easy 🌿",
+    emoji: "🎤",
+    q: "Who is the leader of BTS?",
+    opts: ["Jungkook", "Suga", "RM", "Jin"],
+    ans: 2,
+    fact: "RM (Kim Namjoon) is the leader of BTS and is known for his deep lyrics! 🎙️",
+    hint: "He is also the main rapper and speaks fluent English 🌟"
+  },
+  {
+    level:"Easy 🌿",
+    emoji: "🌊",
+    q: "Which is the largest ocean on Earth?",
+    opts: ["Atlantic", "Indian", "Arctic", "Pacific"],
+    ans: 3,
+    fact: "The Pacific Ocean covers more than 30% of Earth's surface! 🌊",
+    hint: "It borders Asia on one side and America on the other 🗺️"
+  },
+  {
+    level:"Easy 🌿",
+    emoji: "❤️",
+    q: "How do you say 'I love you' in Korean?",
+    opts: ["Mianhae", "Gomawo", "Saranghae", "Annyeong"],
+    ans: 2,
+    fact: "사랑해 (Saranghae) means I love you in Korean! A word every ARMY knows 💜",
+    hint: "BTS members say this to ARMY all the time at concerts 🎶"
+  },
 
-  // // ── MEDIUM (7-9) ─────────────────────────────────────────
-  // {
-  //   level:"Medium 🔥",
-  //   emoji: "🏆",
-  //   q: "What does BTS stand for?",
-  //   opts: [
-  //     "Beyond The Scene",
-  //     "Bangtan Sonyeondan",
-  //     "Both A and B are correct",
-  //     "Bulletproof Tiger Squad"
-  //   ],
-  //   ans: 2,
-  //   fact: "BTS stands for both 방탄소년단 (Bangtan Sonyeondan) AND Beyond The Scene! 🏆",
-  //   hint: "The Korean name means 'Bulletproof Boy Scouts' 🛡️"
-  // },
-  // {
-  //   level:"Medium 🔥",
-  //   emoji: "🎵",
-  //   q: "Which BTS song starts with the lyrics 'Naneun gwiohae' and became a viral hit about self-love?",
-  //   opts: ["Dynamite", "Butter", "DNA", "Idol"],
-  //   ans: 3,
-  //   fact: "'Idol' celebrates self-love and identity — 'You can't stop me lovin' myself!' 💃",
-  //   hint: "The music video has a very colourful traditional Korean aesthetic 🎨"
-  // },
-  // {
-  //   level:"Medium 🔥",
-  //   emoji: "🌐",
-  //   q: "What is the capital city of South Korea?",
-  //   opts: ["Busan", "Incheon", "Seoul", "Daegu"],
-  //   ans: 2,
-  //   fact: "Seoul (서울) is the capital of South Korea and home to HYBE, BTS's company! 🏙️",
-  //   hint: "It is one of the most populated cities in the world 🌆"
-  // },
+  // ── MEDIUM (7-9) ─────────────────────────────────────────
+  {
+    level:"Medium 🔥",
+    emoji: "🏆",
+    q: "What does BTS stand for?",
+    opts: [
+      "Beyond The Scene",
+      "Bangtan Sonyeondan",
+      "Both A and B are correct",
+      "Bulletproof Tiger Squad"
+    ],
+    ans: 2,
+    fact: "BTS stands for both 방탄소년단 (Bangtan Sonyeondan) AND Beyond The Scene! 🏆",
+    hint: "The Korean name means 'Bulletproof Boy Scouts' 🛡️"
+  },
+  {
+    level:"Medium 🔥",
+    emoji: "🎵",
+    q: "Which BTS song starts with the lyrics 'Naneun gwiohae' and became a viral hit about self-love?",
+    opts: ["Dynamite", "Butter", "DNA", "Idol"],
+    ans: 3,
+    fact: "'Idol' celebrates self-love and identity — 'You can't stop me lovin' myself!' 💃",
+    hint: "The music video has a very colourful traditional Korean aesthetic 🎨"
+  },
+  {
+    level:"Medium 🔥",
+    emoji: "🌐",
+    q: "What is the capital city of South Korea?",
+    opts: ["Busan", "Incheon", "Seoul", "Daegu"],
+    ans: 2,
+    fact: "Seoul (서울) is the capital of South Korea and home to HYBE, BTS's company! 🏙️",
+    hint: "It is one of the most populated cities in the world 🌆"
+  },
 
-  // // ── HARD (10-12) ─────────────────────────────────────────
-  // {
-  //   level:"Hard 💀",
-  //   emoji: "🔢",
-  //   q: "How do you say the number '14' in Korean? (Hint: you're turning 14! 🎂)",
-  //   opts: ["Yeol-net", "Sib-sa", "Yeol-net AND Sib-sa", "Ppal"],
-  //   ans: 2,
-  //   fact: "14 in Korean is 열넷 (Yeol-net) in native Korean OR 십사 (Sib-sa) in Sino-Korean! 🔢",
-  //   hint: "Think of it as 10 (열/십) + 4 (넷/사) combined together 🧮"
-  // },
-  // {
-  //   level:"Hard 💀",
-  //   emoji: "🎂",
-  //   q: "In which year did BTS release their debut single '2 Cool 4 Skool'?",
-  //   opts: ["2011", "2012", "2013", "2014"],
-  //   ans: 2,
-  //   fact: "BTS debuted on June 13, 2013 with '2 Cool 4 Skool' under Big Hit Entertainment! 🎉",
-  //   hint: "They debuted the same year you were born — what a coincidence! 🌟"
-  // },
-  // {
-  //   level:"Hard 💀",
-  //   emoji: "💿",
-  //   q: "What is the name of BTS's fandom?",
-  //   opts: ["Blink", "ARMY", "MOA", "Stay"],
-  //   ans: 1,
-  //   fact: "ARMY stands for Adorable Representative M.C for Youth — fans who protect BTS! 💜",
-  //   hint: "An army protects — just like BTS fans protect and support them 🛡️"
-  // },
+  // ── HARD (10-12) ─────────────────────────────────────────
+  {
+    level:"Hard 💀",
+    emoji: "🔢",
+    q: "How do you say the number '14' in Korean? (Hint: you're turning 14! 🎂)",
+    opts: ["Yeol-net", "Sib-sa", "Yeol-net AND Sib-sa", "Ppal"],
+    ans: 2,
+    fact: "14 in Korean is 열넷 (Yeol-net) in native Korean OR 십사 (Sib-sa) in Sino-Korean! 🔢",
+    hint: "Think of it as 10 (열/십) + 4 (넷/사) combined together 🧮"
+  },
+  {
+    level:"Hard 💀",
+    emoji: "🎂",
+    q: "In which year did BTS release their debut single '2 Cool 4 Skool'?",
+    opts: ["2011", "2012", "2013", "2014"],
+    ans: 2,
+    fact: "BTS debuted on June 13, 2013 with '2 Cool 4 Skool' under Big Hit Entertainment! 🎉",
+    hint: "They debuted the same year you were born — what a coincidence! 🌟"
+  },
+  {
+    level:"Hard 💀",
+    emoji: "💿",
+    q: "What is the name of BTS's fandom?",
+    opts: ["Blink", "ARMY", "MOA", "Stay"],
+    ans: 1,
+    fact: "ARMY stands for Adorable Representative M.C for Youth — fans who protect BTS! 💜",
+    hint: "An army protects — just like BTS fans protect and support them 🛡️"
+  },
 
-  // // ── HARDEST (13-14) ──────────────────────────────────────
-  // {
-  //   level:"Hardest 🧠",
-  //   emoji: "🇰🇷",
-  //   q: "What is the Korean writing system called?",
-  //   opts: ["Kanji", "Hangul", "Hiragana", "Hanja"],
-  //   ans: 1,
-  //   fact: "한글 (Hangul) was created by King Sejong the Great in 1443! It has 24 letters 📜",
-  //   hint: "BTS sing and write in this script — it was invented by a Korean king 👑"
-  // },
-  // {
-  //   level:"Hardest 🧠",
-  //   emoji: "🎙️",
-  //   q: "Which BTS member is known as the 'Golden Maknae' (youngest member with all-round talent)?",
-  //   opts: ["V (Taehyung)", "Jimin", "J-Hope", "Jungkook"],
-  //   ans: 3,
-  //   fact: "Jungkook is the youngest (maknae) of BTS and excels at singing, dancing & art — truly golden! ✨",
-  //   hint: "'Maknae' means youngest in Korean, and 'golden' means talented at everything 🥇"
-  // }
+  // ── HARDEST (13-14) ──────────────────────────────────────
+  {
+    level:"Hardest 🧠",
+    emoji: "🇰🇷",
+    q: "What is the Korean writing system called?",
+    opts: ["Kanji", "Hangul", "Hiragana", "Hanja"],
+    ans: 1,
+    fact: "한글 (Hangul) was created by King Sejong the Great in 1443! It has 24 letters 📜",
+    hint: "BTS sing and write in this script — it was invented by a Korean king 👑"
+  },
+  {
+    level:"Hardest 🧠",
+    emoji: "🎙️",
+    q: "Which BTS member is known as the 'Golden Maknae' (youngest member with all-round talent)?",
+    opts: ["V (Taehyung)", "Jimin", "J-Hope", "Jungkook"],
+    ans: 3,
+    fact: "Jungkook is the youngest (maknae) of BTS and excels at singing, dancing & art — truly golden! ✨",
+    hint: "'Maknae' means youngest in Korean, and 'golden' means talented at everything 🥇"
+  }
 ];
 
 /* Messages to type out */
