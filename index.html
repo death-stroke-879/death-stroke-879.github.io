@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Het 💜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Nunito:wght@400;600;700;800;900&family=Dancing+Script:wght@700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <a href="#screen-landing" class="sr-only">Skip to content</a>
+
+  <!-- ════════════════════════════════════
+     CINEMATIC INTRO
+════════════════════════════════════ -->
+  <div id="intro" role="status" aria-live="polite">
+    <div class="intro-lines">
+      <p class="intro-line intro-line-1" id="il1">On April 29…</p>
+      <p class="intro-line intro-line-1" id="il2">2012</p>
+      <p class="intro-line intro-line-3" id="il3">someone very special was born</p>
+      <p class="intro-line intro-line-2" id="il4">Het 💜</p>
+      <p class="intro-line intro-line-4" id="il5">and the world became a brighter place ✨</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+     LANDING
+════════════════════════════════════ -->
+  <section id="screen-landing" class="screen">
+    <div class="stars-canvas" id="stars-landing"></div>
+    <div class="orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="sparks" aria-hidden="true">
+      <span class="spark spark-1">✨</span><span class="spark spark-2">🌸</span>
+      <span class="spark spark-3">💜</span><span class="spark spark-4">⭐</span><span class="spark spark-5">🎀</span>
+    </div>
+    <div class="landing-inner">
+      <p class="landing-sub">A special surprise awaits you…</p>
+      <h1 class="landing-name">Het</h1>
+      <p class="landing-tagline">Answer all 14 questions to unlock your birthday present 🎂</p>
+      <button class="btn-primary pulse-glow" id="btn-start" type="button">Begin Your Journey ✨</button>
+      <div class="emoji-row" aria-hidden="true">
+        <span class="emoji-bob" style="--d:0s">💜</span>
+        <span class="emoji-bob" style="--d:0.3s">✨</span>
+        <span class="emoji-bob" style="--d:0.6s">🎂</span>
+        <span class="emoji-bob" style="--d:0.9s">🌸</span>
+        <span class="emoji-bob" style="--d:1.2s">⭐</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+     QUIZ
+════════════════════════════════════ -->
+  <section id="screen-quiz" class="screen">
+    <div class="stars-canvas" id="stars-quiz"></div>
+    <div class="sparks quiz-sparks" aria-hidden="true">
+      <span>✨</span><span>💜</span><span>⭐</span><span>🌸</span>
+    </div>
+    <div class="quiz-container">
+      <div class="prog-wrap">
+        <div class="prog-track">
+          <div class="prog-bar" id="prog-bar"></div>
+        </div>
+        <span class="prog-label" id="prog-label">1 / 14</span>
+      </div>
+      <div class="quiz-card" id="quiz-card">
+        <span class="q-level-badge" id="q-level">Easiest 🌱</span>
+        <div class="q-emoji" id="q-emoji">🎉</div>
+        <h2 class="q-text" id="q-text">Loading…</h2>
+        <div class="q-options" id="q-options"></div>
+        <div id="q-feedback" class="q-feedback hidden"></div>
+      </div>
+      <div style="text-align:center">
+        <span class="score-chip" id="score-chip">Correct: 0 / 14</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+     CAKE
+════════════════════════════════════ -->
+  <section id="screen-cake" class="screen">
+    <div class="stars-canvas" id="stars-cake"></div>
+    <div class="orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="cake-stage">
+      <p class="cake-pre" id="cake-pre">You unlocked the surprise! 💜</p>
+      <div
+        style="position:relative;width:320px;min-height:320px;display:flex;align-items:flex-end;justify-content:center;">
+        <!-- fountains -->
+        <div class="fountain fountain-l" id="f-left">
+          <div class="f-stem">
+            <span class="f-spark"></span><span class="f-spark"></span><span class="f-spark"></span>
+          </div>
+        </div>
+        <div class="fountain fountain-r" id="f-right">
+          <div class="f-stem">
+            <span class="f-spark"></span><span class="f-spark"></span><span class="f-spark"></span>
+          </div>
+        </div>
+        <!-- cake -->
+        <div class="cake-wrap" id="cake-wrap">
+
+          <!-- fountains OUTSIDE c-body, siblings to it -->
+          <div class="fountain fountain-l" id="f-left">
+            <div class="f-stem">
+              <span class="f-spark"></span>
+              <span class="f-spark"></span>
+              <span class="f-spark"></span>
+              <span class="f-spark"></span>
+              <span class="f-spark"></span>
+            </div>
+          </div>
+
+          <div class="c-body">
+            <div class="c-layer c-top"></div>
+            <div class="c-layer c-mid"></div>
+            <div class="c-layer c-bot"></div>
+            <div class="c-candles" id="c-candles">
+              <div class="candle"><span class="flame"></span></div>
+              <div class="candle"><span class="flame"></span></div>
+              <div class="candle"><span class="flame"></span></div>
+              <div class="candle"><span class="flame"></span></div>
+              <div class="candle"><span class="flame"></span></div>
+            </div>
+          </div>
+
+          <div class="fountain fountain-r" id="f-right">
+            <div class="f-stem">
+              <span class="f-spark"></span>
+              <span class="f-spark"></span>
+              <span class="f-spark"></span>
+              <span class="f-spark"></span>
+              <span class="f-spark"></span>
+            </div>
+          </div>
+
+          <div class="c-plate"></div>
+          <div class="c-shadow"></div>
+        </div>
+        <!-- cake -->
+
+      </div>
+      <p class="cake-hint" id="cake-hint">Make a wish and blow out the candles 🌟</p>
+      <button class="btn-primary hidden" id="btn-blow" type="button">💨 Blow The Candles</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+     GIFT
+════════════════════════════════════ -->
+  <section id="screen-gift" class="screen">
+    <div class="stars-canvas" id="stars-gift"></div>
+    <div class="orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="gift-stage">
+      <p class="gift-pre">A gift is waiting for you… 🎁</p>
+      <!-- SVG gift box -->
+      <div class="gift-box" id="gift-box" role="button" tabindex="0" aria-label="Open your birthday gift">
+        <svg width="220" height="240" viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true">
+          <!-- box body -->
+          <rect x="20" y="110" width="180" height="120" rx="10" fill="#7c3aed" />
+          <rect x="20" y="110" width="180" height="120" rx="10" fill="url(#boxGrad)" />
+          <!-- lid -->
+          <rect x="10" y="85" width="200" height="38" rx="8" fill="#a855f7" />
+          <rect x="10" y="85" width="200" height="38" rx="8" fill="url(#lidGrad)" />
+          <!-- ribbon vertical -->
+          <rect x="100" y="85" width="20" height="145" fill="#fbbf24" opacity="0.9" />
+          <!-- ribbon horizontal on lid -->
+          <rect x="10" y="95" width="200" height="18" fill="#fbbf24" opacity="0.9" />
+          <!-- bow left loop -->
+          <ellipse cx="85" cy="72" rx="28" ry="18" fill="#fbbf24" transform="rotate(-30 85 72)" />
+          <!-- bow right loop -->
+          <ellipse cx="135" cy="72" rx="28" ry="18" fill="#fbbf24" transform="rotate(30 135 72)" />
+          <!-- bow center -->
+          <circle cx="110" cy="80" r="13" fill="#fde68a" />
+          <!-- shine on lid -->
+          <rect x="18" y="90" width="60" height="6" rx="3" fill="rgba(255,255,255,0.25)" />
+          <!-- dots on box -->
+          <circle cx="55" cy="155" r="5" fill="rgba(255,255,255,0.2)" />
+          <circle cx="75" cy="175" r="4" fill="rgba(255,255,255,0.15)" />
+          <circle cx="155" cy="150" r="5" fill="rgba(255,255,255,0.2)" />
+          <circle cx="165" cy="180" r="4" fill="rgba(255,255,255,0.15)" />
+          <defs>
+            <linearGradient id="boxGrad" x1="20" y1="110" x2="20" y2="230" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#9333ea" />
+              <stop offset="100%" stop-color="#581c87" />
+            </linearGradient>
+            <linearGradient id="lidGrad" x1="10" y1="85" x2="10" y2="123" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#c084fc" />
+              <stop offset="100%" stop-color="#9333ea" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <p class="gift-hint">Tap the gift to open it! 🎊</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+     FINAL MESSAGES
+════════════════════════════════════ -->
+  <section id="screen-final" class="screen">
+    <div class="stars-canvas" id="stars-final"></div>
+    <div class="orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="floating-hearts" id="float-hearts"></div>
+    <div class="final-inner">
+      <h1 class="final-title">Happy 14th Birthday Het 💜</h1>
+
+      <!-- Message from Jiju -->
+      <div class="msg-card" id="msg-card-1">
+        <div class="msg-header">
+          <span class="msg-icon" aria-hidden="true">💌</span>
+          <div>
+            <p class="msg-from-name">From Vishal</p>
+          </div>
+        </div>
+        <p class="msg-body" id="msg-body-1"></p>
+      </div>
+
+      <!-- Message from Didi -->
+      <div class="msg-card" id="msg-card-2">
+        <div class="msg-header">
+          <span class="msg-icon" aria-hidden="true">🌸</span>
+          <div>
+            <p class="msg-from-name">From Krupa</p>
+          </div>
+        </div>
+        <p class="msg-body" id="msg-body-2"></p>
+      </div>
+
+      <div class="final-replay" id="final-replay">
+        <button class="btn-secondary" id="btn-replay" type="button">🔁 Replay Your Birthday</button>
+      </div>
+    </div>
+  </section>
+  <script src="./app.js" defer></script>
+</body>
+
+</html>
