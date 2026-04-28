@@ -14,6 +14,8 @@ const QUIZ = [
     hint: "Their fans are called ARMY and their favourite colour is purple 💜"
   },
   // { 
+
+
   //   level:"Easiest 🌱",
   //   emoji: "🌍",
   //   q: "Which country is BTS from?",
@@ -489,6 +491,7 @@ function startFinal() {
   showScreen('screen-final');
   makeStars('stars-final', 80);
   spawnHearts();
+  startEmojiRain();
 
   // Reset states
   el('envelope-stage').classList.remove('hidden');
@@ -609,7 +612,59 @@ function spawnHearts() {
     c.appendChild(s);
   }
 }
+/* ════════════════════════════════════════════
+   BTS EMOJI RAIN
+════════════════════════════════════════════ */
+function startEmojiRain() {
+  const container = el('emoji-rain-container');
+  if (!container) return;
+  container.innerHTML = '';
 
+  // BTS-themed emoji set
+  const emojis = [
+    '💜','💜','💜',   // purple hearts — most frequent
+    '⭐','⭐',
+    '🎵','🎵',
+    '✨','✨',
+    '💫',
+    '🌟',
+    '🎶',
+    '🎤',
+    '🪄',
+    '🌸',
+  ];
+
+  const TOTAL = 55;   // number of simultaneous falling emojis
+
+  for (let i = 0; i < TOTAL; i++) {
+    const span = document.createElement('span');
+    span.className = 'rain-emoji';
+    span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+    // Random horizontal position
+    const left    = (Math.random() * 100).toFixed(1);
+    // Random fall speed (3s – 7s) — stagger so they don't all arrive together
+    const dur     = (Math.random() * 4 + 3).toFixed(2);
+    // Random delay so rain fills screen continuously from the start
+    const delay   = (Math.random() * -7).toFixed(2);   // negative = already mid-fall
+    // Slight random rotation drift
+    const sRot    = `${(Math.random() * 20 - 10).toFixed(1)}deg`;
+    const eRot    = `${(Math.random() * 60 - 10).toFixed(1)}deg`;
+    // Random size variation
+    const size    = (Math.random() * 0.8 + 1).toFixed(2);
+
+    span.style.cssText = [
+      `left: ${left}%`,
+      `font-size: ${size}rem`,
+      `--fall-dur: ${dur}s`,
+      `--fall-del: ${delay}s`,
+      `--start-rot: ${sRot}`,
+      `--end-rot: ${eRot}`,
+    ].join(';');
+
+    container.appendChild(span);
+  }
+}
 /* ════════════════════════════════════════════
    CONFETTI HELPERS
 ════════════════════════════════════════════ */

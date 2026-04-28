@@ -1570,3 +1570,202 @@ button {
   min-width: 90px;
   text-align: right;
 }
+
+/* ═══════════════════════════════════════
+   AURORA / NORTHERN LIGHTS BACKGROUND
+═══════════════════════════════════════ */
+
+/* Override the final screen background */
+#screen-final {
+  background: transparent !important;
+  overflow: hidden;
+}
+
+/* Aurora container — sits behind everything */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Deep dark base — K-pop night sky */
+  background: radial-gradient(ellipse at 50% 110%, #0d021a 0%, #040010 60%, #000008 100%);
+}
+
+/* Each aurora band */
+.aurora-band {
+  position: absolute;
+  left: -30%;
+  width: 160%;
+  border-radius: 50%;
+  filter: blur(60px);
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+/* Band 1 — teal/cyan sweep */
+.aurora-band-1 {
+  height: 45%;
+  top: 10%;
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    rgba(0, 210, 200, 0.55) 0%,
+    rgba(0, 160, 180, 0.3) 35%,
+    transparent 70%
+  );
+  animation: auroraWave1 9s ease-in-out infinite;
+}
+
+/* Band 2 — purple shimmer */
+.aurora-band-2 {
+  height: 55%;
+  top: 5%;
+  background: radial-gradient(
+    ellipse at 42% 55%,
+    rgba(168, 85, 247, 0.5) 0%,
+    rgba(124, 58, 237, 0.25) 40%,
+    transparent 70%
+  );
+  animation: auroraWave2 11s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* Band 3 — pink/magenta ribbon */
+.aurora-band-3 {
+  height: 40%;
+  top: 20%;
+  background: radial-gradient(
+    ellipse at 58% 45%,
+    rgba(236, 72, 153, 0.4) 0%,
+    rgba(219, 39, 119, 0.18) 40%,
+    transparent 70%
+  );
+  animation: auroraWave3 13s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+/* Band 4 — violet depth layer */
+.aurora-band-4 {
+  height: 60%;
+  top: 0%;
+  background: radial-gradient(
+    ellipse at 30% 40%,
+    rgba(109, 40, 217, 0.35) 0%,
+    rgba(79, 22, 165, 0.15) 50%,
+    transparent 75%
+  );
+  animation: auroraWave4 15s ease-in-out infinite;
+  animation-delay: -9s;
+}
+
+/* Band 5 — teal accent streak */
+.aurora-band-5 {
+  height: 35%;
+  top: 30%;
+  background: radial-gradient(
+    ellipse at 70% 50%,
+    rgba(20, 220, 210, 0.3) 0%,
+    rgba(0, 188, 188, 0.12) 45%,
+    transparent 70%
+  );
+  animation: auroraWave5 10s ease-in-out infinite;
+  animation-delay: -4.5s;
+}
+
+/* Shimmer highlight — narrow streak of near-white */
+.aurora-shimmer {
+  position: absolute;
+  top: 12%;
+  left: 15%;
+  width: 70%;
+  height: 12%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.06) 30%,
+    rgba(220, 190, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.06) 70%,
+    transparent
+  );
+  filter: blur(10px);
+  border-radius: 50%;
+  animation: shimmerSlide 8s ease-in-out infinite alternate;
+}
+
+/* ── Keyframes ── */
+@keyframes auroraWave1 {
+  0%   { opacity: 0.6; transform: translateY(0%)   scaleX(1)    rotate(-2deg); }
+  25%  { opacity: 0.85; transform: translateY(-5%)  scaleX(1.06) rotate(1deg);  }
+  50%  { opacity: 0.65; transform: translateY(4%)   scaleX(0.97) rotate(-3deg); }
+  75%  { opacity: 0.9;  transform: translateY(-8%)  scaleX(1.1)  rotate(2deg);  }
+  100% { opacity: 0.6;  transform: translateY(0%)   scaleX(1)    rotate(-2deg); }
+}
+@keyframes auroraWave2 {
+  0%   { opacity: 0.5;  transform: translateY(6%)   scaleX(0.95) rotate(3deg);  }
+  33%  { opacity: 0.8;  transform: translateY(-4%)  scaleX(1.08) rotate(-2deg); }
+  66%  { opacity: 0.55; transform: translateY(8%)   scaleX(1)    rotate(4deg);  }
+  100% { opacity: 0.5;  transform: translateY(6%)   scaleX(0.95) rotate(3deg);  }
+}
+@keyframes auroraWave3 {
+  0%   { opacity: 0.45; transform: translateY(0%)   scaleX(1.05) rotate(-1deg); }
+  40%  { opacity: 0.7;  transform: translateY(-6%)  scaleX(0.92) rotate(3deg);  }
+  80%  { opacity: 0.5;  transform: translateY(5%)   scaleX(1.1)  rotate(-2deg); }
+  100% { opacity: 0.45; transform: translateY(0%)   scaleX(1.05) rotate(-1deg); }
+}
+@keyframes auroraWave4 {
+  0%   { opacity: 0.4;  transform: translateX(0%)   scaleY(1)    rotate(1deg);  }
+  50%  { opacity: 0.65; transform: translateX(5%)   scaleY(1.12) rotate(-2deg); }
+  100% { opacity: 0.4;  transform: translateX(0%)   scaleY(1)    rotate(1deg);  }
+}
+@keyframes auroraWave5 {
+  0%   { opacity: 0.35; transform: translateY(3%)   scaleX(1)    rotate(2deg);  }
+  45%  { opacity: 0.6;  transform: translateY(-4%)  scaleX(1.07) rotate(-3deg); }
+  100% { opacity: 0.35; transform: translateY(3%)   scaleX(1)    rotate(2deg);  }
+}
+@keyframes shimmerSlide {
+  0%   { opacity: 0.5; transform: translateX(-8%) scaleX(0.9); }
+  100% { opacity: 1;   transform: translateX(8%)  scaleX(1.1); }
+}
+
+/* ── Aurora fade in when final screen activates ── */
+#screen-final.active .aurora-bg {
+  animation: auroraFadeIn 2s ease forwards;
+}
+@keyframes auroraFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════
+   BTS EMOJI RAIN
+═══════════════════════════════════════ */
+#emoji-rain-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;           /* above aurora, below content */
+  overflow: hidden;
+}
+
+.rain-emoji {
+  position: absolute;
+  top: -60px;
+  font-size: 1.4rem;
+  opacity: 0;
+  animation: emojiRainFall var(--fall-dur, 4s) var(--fall-del, 0s) linear infinite;
+  will-change: transform, opacity;
+  user-select: none;
+}
+
+@keyframes emojiRainFall {
+  0%   {
+    opacity: 0;
+    transform: translateY(0) rotate(var(--start-rot, 0deg)) scale(0.7);
+  }
+  8%   { opacity: 0.9; }
+  88%  { opacity: 0.75; }
+  100% {
+    opacity: 0;
+    transform: translateY(110vh) rotate(var(--end-rot, 30deg)) scale(1.1);
+  }
+}
