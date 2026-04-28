@@ -1401,3 +1401,172 @@ button {
   0%   { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
   100% { opacity: 0; transform: translateY(-120px) scale(0.7) rotate(8deg); }
 }
+
+/* ═══════════════════════════════════════
+   SCRATCH CARD
+═══════════════════════════════════════ */
+.scratch-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  width: min(100%, 500px);
+  padding: 0 16px;
+}
+
+.scratch-pre {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 900;
+  color: #d8b4fe;
+  animation: fadeSlideUp 0.7s var(--ease-out) both;
+}
+
+.scratch-sub {
+  font-size: clamp(0.88rem, 2vw, 1rem);
+  color: var(--muted);
+  animation: fadeSlideUp 0.7s 0.2s var(--ease-out) both;
+}
+
+/* ── Card wrapper ── */
+.scratch-card-wrap {
+  position: relative;
+  width: clamp(280px, 80vw, 420px);
+  height: clamp(200px, 50vw, 280px);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 2px rgba(192, 132, 252, 0.3),
+    0 24px 60px rgba(0, 0, 0, 0.5);
+  animation: fadeSlideUp 0.8s 0.3s var(--ease-out) both;
+  cursor: crosshair;
+}
+
+/* ── Bottom layer — revealed content ── */
+.scratch-reveal {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1e0a3c, #2d1060, #1a0633);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.reveal-emoji {
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  animation: revealBounce 0.6s var(--ease-spring);
+}
+@keyframes revealBounce {
+  from { transform: scale(0) rotate(-20deg); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+.reveal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 700;
+  background: var(--grad-name);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 4s ease-in-out infinite;
+}
+
+.reveal-msg {
+  font-size: clamp(0.85rem, 2.2vw, 1rem);
+  color: #d8b4fe;
+  line-height: 1.7;
+  font-weight: 700;
+}
+
+.reveal-stars {
+  font-size: 1.3rem;
+  letter-spacing: 8px;
+}
+
+/* ── Top layer — canvas ── */
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  touch-action: none;    /* prevents scroll while scratching on mobile */
+}
+
+/* ── Scratch hint overlay ── */
+.scratch-hint-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.scratch-hint-overlay.hide {
+  opacity: 0;
+}
+
+.scratch-finger {
+  font-size: 2.4rem;
+  animation: fingerBounce 1.2s ease-in-out infinite alternate;
+}
+@keyframes fingerBounce {
+  from { transform: translateY(0) rotate(-10deg); }
+  to   { transform: translateY(-12px) rotate(10deg); }
+}
+
+.scratch-hint-text {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Progress bar ── */
+.scratch-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: clamp(280px, 80vw, 420px);
+  animation: fadeSlideUp 0.7s 0.5s var(--ease-out) both;
+}
+.scratch-progress-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(192, 132, 252, 0.14);
+  overflow: hidden;
+}
+.scratch-progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ec4899, #a855f7, #fbbf24);
+  background-size: 200% auto;
+  animation: gradShift 3s linear infinite;
+  transition: width 0.3s ease;
+}
+.scratch-progress-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 800;
+  white-space: nowrap;
+  min-width: 90px;
+  text-align: right;
+}

@@ -339,20 +339,149 @@ function blowCandles() {
 function startGift() {
   showScreen('screen-gift');
   makeStars('stars-gift', 80);
-  const box = el('gift-box');
-  box.classList.remove('open');
-  box.style.pointerEvents = 'all';
+  initScratchCard();
 }
 
 function openGift() {
-  const box = el('gift-box');
-  box.classList.add('open');
-  box.style.pointerEvents = 'none';
   bigBurst();
   setTimeout(() => { bigBurst(); }, 400);
   setTimeout(startFinal, 1500);
 }
+/* ════════════════════════════════════════════
+   SCRATCH CARD
+════════════════════════════════════════════ */
+function initScratchCard() {
+  const canvas  = el('scratch-canvas');
+  const wrap    = canvas.parentElement;
+  const hint    = el('scratch-hint-overlay');
+  const bar     = el('scratch-progress-bar');
+  const label   = el('scratch-progress-label');
+  const btnDone = el('btn-scratch-done');
 
+  // Size canvas to match its CSS size
+  const rect = wrap.getBoundingClientRect();
+  canvas.width  = rect.width  || 420;
+  canvas.height = rect.height || 280;
+
+  const ctx = canvas.getContext('2d');
+
+  // ── Draw the scratch surface ──
+  // Gold/purple gradient background
+  const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  grad.addColorStop(0,   '#7c3aed');
+  grad.addColorStop(0.5, '#a855f7');
+  grad.addColorStop(1,   '#ec4899');
+  ctx.fillStyle = grad;
+  ctx.roundRect(0, 0, canvas.width, canvas.height, 24);
+  ctx.fill();
+
+  // Pattern of emojis on the surface
+  ctx.font = `${Math.round(canvas.width / 10)}px serif`;
+  ctx.textAlign = 'center';
+  ctx.globalAlpha = 0.18;
+  const emojis = ['🎁','💜','✨','🎂','🌟','🎉'];
+  for (let row = 0; row < 5; row++) {
+    for (let col = 0; col < 7; col++) {
+      const emoji = emojis[(row * 7 + col) % emojis.length];
+      ctx.fillText(emoji,
+        (col + 0.5) * (canvas.width / 6),
+        (row + 0.5) * (canvas.height / 4)
+      );
+    }
+  }
+  ctx.globalAlpha = 1;
+
+  // "Scratch me!" text in centre
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.font = `bold ${Math.round(canvas.width / 12)}px Nunito, sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.fillText('🎁 Scratch to Reveal! 🎁', canvas.width / 2, canvas.height / 2);
+
+  // ── Scratch logic ──
+  let isScratching = false;
+  let hasStarted   = false;
+  let completed    = false;
+
+  // Use destination-out to erase the top layer
+  ctx.globalCompositeOperation = 'destination-out';
+
+  function getPos(e) {
+    const r = canvas.getBoundingClientRect();
+    const src = e.touches ? e.touches[0] : e;
+    return {
+      x: (src.clientX - r.left) * (canvas.width  / r.width),
+      y: (src.clientY - r.top)  * (canvas.height / r.height)
+    };
+  }
+
+  function scratch(x, y) {
+    ctx.beginPath();
+    ctx.arc(x, y, 28, 0, Math.PI * 2);   // brush size — increase for bigger eraser
+    ctx.fill();
+  }
+
+  function calcProgress() {
+    const data   = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let cleared  = 0;
+    const total  = canvas.width * canvas.height;
+    // alpha === 0 means pixel is cleared (scratched)
+    for (let i = 3; i < data.length; i += 4) {
+      if (data[i] < 20) cleared++;
+    }
+    return Math.round((cleared / total) * 100);
+  }
+
+  function onScratch(e) {
+    e.preventDefault();
+    if (!isScratching || completed) return;
+
+    const { x, y } = getPos(e);
+    scratch(x, y);
+
+    // Hide hint once they start
+    if (!hasStarted) {
+      hasStarted = true;
+      hint.classList.add('hide');
+    }
+
+    // Update progress every ~10 events to avoid perf hit
+    if (Math.random() < 0.15) {
+      const pct = calcProgress();
+      bar.style.width   = `${Math.min(pct, 100)}%`;
+      label.textContent = `${Math.min(pct, 100)}% scratched`;
+
+      if (pct >= 60 && !completed) {
+        completed = true;
+        // Auto-clear remaining surface
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        bar.style.width   = '100%';
+        label.textContent = '100% scratched 🎉';
+        // Show celebration & button
+        bigBurst();
+        setTimeout(() => {
+          btnDone.classList.remove('hidden');
+          miniConfetti();
+        }, 400);
+      }
+    }
+  }
+
+  // Mouse events
+  canvas.addEventListener('mousedown', (e) => { isScratching = true; const p = getPos(e); scratch(p.x, p.y); });
+  canvas.addEventListener('mousemove', onScratch);
+  canvas.addEventListener('mouseup',   () => isScratching = false);
+  canvas.addEventListener('mouseleave',() => isScratching = false);
+
+  // Touch events
+  canvas.addEventListener('touchstart', (e) => { e.preventDefault(); isScratching = true; const p = getPos(e); scratch(p.x, p.y); }, { passive: false });
+  canvas.addEventListener('touchmove',  onScratch, { passive: false });
+  canvas.addEventListener('touchend',   () => isScratching = false);
+
+  // Reset button states
+  btnDone.classList.add('hidden');
+  btnDone.disabled = false;
+  hint.classList.remove('hide');
+}
 /* ════════════════════════════════════════════
    FINAL MESSAGES + FIREWORKS
 ════════════════════════════════════════════ */
@@ -526,10 +655,9 @@ el('btn-start').addEventListener('click', () => {
 });
 
 el('btn-blow').addEventListener('click', blowCandles);
+el('btn-scratch-done').addEventListener('click', openGift);
 el('btn-open-letter').addEventListener('click', openLetter);
 el('envelope-wrap').addEventListener('click', openLetter);  // clicking envelope also works
-el('gift-box').addEventListener('click', openGift);
-el('gift-box').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGift(); } });
 
 el('btn-replay').addEventListener('click', resetAll);
 
