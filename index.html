@@ -216,43 +216,77 @@
   <!-- ════════════════════════════════════
      FINAL MESSAGES
 ════════════════════════════════════ -->
-  <section id="screen-final" class="screen">
-    <div class="stars-canvas" id="stars-final"></div>
-    <div class="orbs">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-    </div>
-    <div class="floating-hearts" id="float-hearts"></div>
-    <div class="final-inner">
-      <h1 class="final-title">Happy 14th Birthday Het 💜</h1>
+  <!-- ══ FINAL MESSAGE SCREEN ══ -->
+<section class="screen" id="screen-final" aria-label="Birthday messages">
+  <div class="orbs" aria-hidden="true">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  </div>
+  <div class="stars-canvas" id="stars-final" aria-hidden="true"></div>
+  <div class="floating-hearts" id="float-hearts" aria-hidden="true"></div>
 
-      <!-- Message from Jiju -->
-      <div class="msg-card" id="msg-card-1">
-        <div class="msg-header">
-          <span class="msg-icon" aria-hidden="true">💌</span>
-          <div>
-            <p class="msg-from-name">From Vishal</p>
-          </div>
+  <!-- ── ENVELOPE UNSEALING (shown first) ── -->
+  <div class="envelope-stage" id="envelope-stage">
+    <p class="env-label">A letter has arrived for you… 💜</p>
+
+    <div class="envelope-wrap" id="envelope-wrap">
+      <!-- Envelope body -->
+      <div class="env-body">
+        <!-- Flap (top triangle that opens) -->
+        <div class="env-flap" id="env-flap"></div>
+        <!-- Inner letter peek -->
+        <div class="env-letter-peek" id="env-letter-peek">
+          <span>💜</span>
         </div>
-        <p class="msg-body" id="msg-body-1"></p>
-      </div>
-
-      <!-- Message from Didi -->
-      <div class="msg-card" id="msg-card-2">
-        <div class="msg-header">
-          <span class="msg-icon" aria-hidden="true">🌸</span>
-          <div>
-            <p class="msg-from-name">From Krupa</p>
-          </div>
+        <!-- Wax seal -->
+        <div class="env-seal" id="env-seal">
+          <span class="seal-text">H</span>
         </div>
-        <p class="msg-body" id="msg-body-2"></p>
-      </div>
-
-      <div class="final-replay" id="final-replay">
-        <button class="btn-secondary" id="btn-replay" type="button">🔁 Replay Your Birthday</button>
+        <!-- Envelope front lines -->
+        <div class="env-lines">
+          <span></span><span></span><span></span>
+        </div>
       </div>
     </div>
-  </section>
+
+    <p class="env-hint" id="env-hint">Tap the envelope to open it! 💌</p>
+    <button class="btn-primary pulse-glow" id="btn-open-letter" type="button" style="margin-top:8px;">
+      💌 Open the Letter
+    </button>
+  </div>
+
+  <!-- ── MESSAGES (revealed after envelope) ── -->
+  <div class="final-inner hidden" id="final-inner">
+    <h1 class="final-title">Happy Birthday, Het! 🎂</h1>
+
+    <!-- Message from Vishal -->
+    <div class="msg-card" id="msg-card-1">
+      <div class="msg-header">
+        <span class="msg-icon">💜</span>
+        <div>
+          <div class="msg-from-name">From Vishal</div>
+          <div class="msg-from-role">Your Jiju 🌟</div>
+        </div>
+      </div>
+      <p class="msg-body" id="msg-body-1"></p>
+    </div>
+
+    <!-- Message from Krupa -->
+    <div class="msg-card" id="msg-card-2">
+      <div class="msg-header">
+        <span class="msg-icon">🌸</span>
+        <div>
+          <div class="msg-from-name">From Krupa</div>
+          <div class="msg-from-role">Your Didi 💜</div>
+        </div>
+      </div>
+      <p class="msg-body" id="msg-body-2"></p>
+    </div>
+
+    <div class="final-replay" id="final-replay">
+      <button class="btn-secondary" id="btn-replay" type="button">🔄 Start Over</button>
+    </div>
+  </div>
+</section>
   <script src="./app.js" defer></script>
 </body>
 
