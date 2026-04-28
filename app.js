@@ -2,19 +2,17 @@
    QUIZ DATA — 14 questions (turns 14)
 ════════════════════════════════════════════ */
 const QUIZ = [
-
   // ── EASIEST (1-3) ────────────────────────────────────────
-  { 
-    level:"Easiest 🌱",
+  {
+    level: "Easiest 🌱",
     emoji: "💜",
     q: "What is the name of the famous K-pop group with 7 members known worldwide?",
     opts: ["EXO", "BTS", "BLACKPINK", "GOT7"],
     ans: 1,
     fact: "BTS (방탄소년단) debuted in 2013 and became a global sensation! 💜",
-    hint: "Their fans are called ARMY and their favourite colour is purple 💜"
+    hint: "Their fans are called ARMY and their favourite colour is purple 💜",
   },
-  // { 
-
+  // {
 
   //   level:"Easiest 🌱",
   //   emoji: "🌍",
@@ -24,7 +22,7 @@ const QUIZ = [
   //   fact: "BTS is from South Korea, signed under HYBE (formerly Big Hit)! 🇰🇷",
   //   hint: "Their language is Korean and the country is in East Asia 🌏"
   // },
-  // { 
+  // {
   //   level:"Easiest 🌱",
   //   emoji: "🔤",
   //   q: "How do you say 'Hello' in Korean?",
@@ -35,7 +33,7 @@ const QUIZ = [
   // },
 
   // // ── EASY (4-6) ───────────────────────────────────────────
-  // { 
+  // {
   //   level:"Easy 🌿",
   //   emoji: "🎤",
   //   q: "Who is the leader of BTS?",
@@ -145,33 +143,101 @@ const QUIZ = [
   //   fact: "Jungkook is the youngest (maknae) of BTS and excels at singing, dancing & art — truly golden! ✨",
   //   hint: "'Maknae' means youngest in Korean, and 'golden' means talented at everything 🥇"
   // }
-
 ];
 
 /* Messages to type out */
-const MSG1 = "Hey Het! Wishing you the most amazing 14th birthday ever! 🎉 May this year bring you as much joy and happiness as you bring to everyone around you. You are growing up to be such an incredible, smart, and kind person — and we are so proud of you. Keep dreaming big, keep smiling, and never stop being YOU! Happy Birthday! 💜";
-const MSG2 = "My dearest Het! Happy Birthday to the best little sister in the entire world! 🌸 Having you in my life is one of the greatest gifts I could ever ask for. You light up every room you walk into with your beautiful smile and endless energy. I hope all your wishes come true this year and every year. Love you to the moon and back — always! 💜";
+const MSG1 =
+  "Hey Het! Wishing you the most amazing 14th birthday ever! 🎉 May this year bring you as much joy and happiness as you bring to everyone around you. You are growing up to be such an incredible, smart, and kind person — and we are so proud of you. Keep dreaming big, keep smiling, and never stop being YOU! Happy Birthday! 💜";
+const MSG2 =
+  "My dearest Het! Happy Birthday to the best little sister in the entire world! 🌸 Having you in my life is one of the greatest gifts I could ever ask for. You light up every room you walk into with your beautiful smile and endless energy. I hope all your wishes come true this year and every year. Love you to the moon and back — always! 💜";
+
+/* 14 Reasons We Love Het */
+const REASONS = [
+  {
+    emoji: "😊",
+    text: "Your smile can light up even the darkest room — it's pure magic.",
+  },
+  {
+    emoji: "💜",
+    text: "You love BTS with your whole heart, and that passion is beautiful.",
+  },
+  {
+    emoji: "🧠",
+    text: "You're so smart — you pick up new things faster than anyone we know.",
+  },
+  {
+    emoji: "🌸",
+    text: "Your kind heart means you always think of others before yourself.",
+  },
+  { emoji: "🎵", text: "Your love for music shows your deep, artistic soul." },
+  {
+    emoji: "😂",
+    text: "You make everyone around you laugh — your sense of humour is the best.",
+  },
+  {
+    emoji: "💪",
+    text: "You're braver than you think — you face challenges head-on every time.",
+  },
+  {
+    emoji: "🌟",
+    text: "You have big dreams, and we know with all our hearts you'll reach them.",
+  },
+  {
+    emoji: "🤗",
+    text: "Your hugs are the warmest and most comforting in the whole world.",
+  },
+  {
+    emoji: "📚",
+    text: "You work hard at everything you do — that dedication will take you far.",
+  },
+  {
+    emoji: "🎨",
+    text: "Your creativity and imagination are truly one of a kind.",
+  },
+  {
+    emoji: "🦋",
+    text: "Watching you grow and blossom every year fills us with so much pride.",
+  },
+  {
+    emoji: "🌈",
+    text: "You bring colour, joy, and energy into every single day.",
+  },
+  {
+    emoji: "💖",
+    text: "Simply being YOU is the greatest gift you could ever give this world.",
+  },
+];
 
 /* ════════════════════════════════════════════
    STATE
 ════════════════════════════════════════════ */
 const S = { qi: 0, correct: 0, locked: false, timers: [] };
 
-function el(id) { return document.getElementById(id); }
-function clrTimers() { S.timers.forEach(clearTimeout); S.timers = []; }
-function t(fn, ms) { const id = setTimeout(fn, ms); S.timers.push(id); return id; }
+function el(id) {
+  return document.getElementById(id);
+}
+function clrTimers() {
+  S.timers.forEach(clearTimeout);
+  S.timers = [];
+}
+function t(fn, ms) {
+  const id = setTimeout(fn, ms);
+  S.timers.push(id);
+  return id;
+}
 
 /* ════════════════════════════════════════════
    STARS
 ════════════════════════════════════════════ */
 function makeStars(containerId, n) {
-  const c = el(containerId); if (!c) return;
-  c.innerHTML = '';
+  const c = el(containerId);
+  if (!c) return;
+  c.innerHTML = "";
   for (let i = 0; i < n; i++) {
-    const d = document.createElement('div');
-    d.className = 'star-dot';
+    const d = document.createElement("div");
+    d.className = "star-dot";
     const sz = Math.random() * 2.5 + 0.5;
-    d.style.cssText = `width:${sz}px;height:${sz}px;top:${(Math.random()*100).toFixed(1)}%;left:${(Math.random()*100).toFixed(1)}%;--dur:${(Math.random()*3+2).toFixed(1)}s;--del:${(Math.random()*4).toFixed(1)}s;--min-op:${(Math.random()*0.2+0.06).toFixed(2)};--max-op:${(Math.random()*0.5+0.5).toFixed(2)}`;
+    d.style.cssText = `width:${sz}px;height:${sz}px;top:${(Math.random() * 100).toFixed(1)}%;left:${(Math.random() * 100).toFixed(1)}%;--dur:${(Math.random() * 3 + 2).toFixed(1)}s;--del:${(Math.random() * 4).toFixed(1)}s;--min-op:${(Math.random() * 0.2 + 0.06).toFixed(2)};--max-op:${(Math.random() * 0.5 + 0.5).toFixed(2)}`;
     c.appendChild(d);
   }
 }
@@ -180,17 +246,19 @@ function makeStars(containerId, n) {
    SCREEN TRANSITIONS
 ════════════════════════════════════════════ */
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => {
+  document.querySelectorAll(".screen").forEach((s) => {
     if (s.id === id) {
-      s.classList.remove('exit');
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        s.classList.add('active');
-        s.scrollTop = 0;
-      }));
+      s.classList.remove("exit");
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          s.classList.add("active");
+          s.scrollTop = 0;
+        }),
+      );
     } else {
-      s.classList.remove('active');
-      s.classList.add('exit');
-      setTimeout(() => s.classList.remove('exit'), 700);
+      s.classList.remove("active");
+      s.classList.add("exit");
+      setTimeout(() => s.classList.remove("exit"), 700);
     }
   });
 }
@@ -199,22 +267,22 @@ function showScreen(id) {
    CINEMATIC INTRO
 ════════════════════════════════════════════ */
 function runIntro() {
-  const lines = ['il1','il2','il3','il4','il5'];
-  const delays = [600, 2300, 4300, 6300, 8300];  // each line appears later (more breathing room)
+  const lines = ["il1", "il2", "il3", "il4", "il5"];
+  const delays = [600, 2300, 4300, 6300, 8300]; // each line appears later (more breathing room)
   lines.forEach((id, i) => {
     setTimeout(() => {
       const el2 = el(id);
-      if (el2) el2.classList.add('show');
+      if (el2) el2.classList.add("show");
     }, delays[i]);
   });
   // Fade out intro, reveal landing
   setTimeout(() => {
-    const intro = el('intro');
-    intro.style.opacity = '0';
+    const intro = el("intro");
+    intro.style.opacity = "0";
     setTimeout(() => {
       intro.remove();
-      showScreen('screen-landing');
-      makeStars('stars-landing', 90);
+      showScreen("screen-landing");
+      makeStars("stars-landing", 90);
     }, 1100);
   }, 15000);
 }
@@ -223,42 +291,44 @@ function runIntro() {
    QUIZ
 ════════════════════════════════════════════ */
 function updateChip() {
-  el('score-chip').textContent = `Correct: ${S.correct} / ${QUIZ.length}`;
+  el("score-chip").textContent = `Correct: ${S.correct} / ${QUIZ.length}`;
 }
 
 function loadQ(i) {
   S.locked = false;
   const q = QUIZ[i];
-  el('prog-bar').style.width = `${(i / QUIZ.length) * 100}%`;
-  el('prog-label').textContent = `${i + 1} / ${QUIZ.length}`;
-  el('q-emoji').textContent = q.emoji;
-  el('q-text').textContent  = q.q;
-  el('q-feedback').textContent = '';
-  el('q-feedback').className = 'q-feedback hidden';
+  el("prog-bar").style.width = `${(i / QUIZ.length) * 100}%`;
+  el("prog-label").textContent = `${i + 1} / ${QUIZ.length}`;
+  el("q-emoji").textContent = q.emoji;
+  el("q-text").textContent = q.q;
+  el("q-feedback").textContent = "";
+  el("q-feedback").className = "q-feedback hidden";
 
   // ── Difficulty badge ──────────────────────────────
-  const badge = el('q-level');
+  const badge = el("q-level");
   badge.textContent = q.level;
-  badge.className = 'q-level-badge'; // reset classes first
-  if      (q.level.includes('Easiest')) badge.classList.add('lvl-easiest');
-  else if (q.level.includes('Hardest')) badge.classList.add('lvl-hardest');
-  else if (q.level.includes('Hard'))    badge.classList.add('lvl-hard');
-  else if (q.level.includes('Medium'))  badge.classList.add('lvl-medium');
-  else if (q.level.includes('Easy'))    badge.classList.add('lvl-easy');
+  badge.className = "q-level-badge"; // reset classes first
+  if (q.level.includes("Easiest")) badge.classList.add("lvl-easiest");
+  else if (q.level.includes("Hardest")) badge.classList.add("lvl-hardest");
+  else if (q.level.includes("Hard")) badge.classList.add("lvl-hard");
+  else if (q.level.includes("Medium")) badge.classList.add("lvl-medium");
+  else if (q.level.includes("Easy")) badge.classList.add("lvl-easy");
   // ─────────────────────────────────────────────────
 
-  const opts = el('q-options');
-  opts.innerHTML = '';
+  const opts = el("q-options");
+  opts.innerHTML = "";
   q.opts.forEach((opt, idx) => {
-    const b = document.createElement('button');
-    b.className = 'q-opt'; b.type = 'button'; b.textContent = opt;
-    b.addEventListener('click', () => handleQ(idx));
+    const b = document.createElement("button");
+    b.className = "q-opt";
+    b.type = "button";
+    b.textContent = opt;
+    b.addEventListener("click", () => handleQ(idx));
     opts.appendChild(b);
   });
-  const card = el('quiz-card');
-  card.classList.remove('pop');
+  const card = el("quiz-card");
+  card.classList.remove("pop");
   void card.offsetWidth;
-  card.classList.add('pop');
+  card.classList.add("pop");
   updateChip();
 }
 
@@ -266,30 +336,30 @@ function handleQ(sel) {
   if (S.locked) return;
   S.locked = true;
   const q = QUIZ[S.qi];
-  const btns = document.querySelectorAll('.q-opt');
-  const fb = el('q-feedback');
-  btns.forEach(b => b.disabled = true);
+  const btns = document.querySelectorAll(".q-opt");
+  const fb = el("q-feedback");
+  btns.forEach((b) => (b.disabled = true));
   if (sel === q.ans) {
-    btns[q.ans].classList.add('correct');
+    btns[q.ans].classList.add("correct");
     S.correct++;
     updateChip();
     fb.textContent = `✅ ${q.fact}`;
-    fb.className = 'q-feedback ok';
+    fb.className = "q-feedback ok";
     miniConfetti();
     setTimeout(() => {
       S.qi++;
       if (S.qi < QUIZ.length) {
         loadQ(S.qi);
       } else {
-        el('prog-bar').style.width = '100%';
-        el('prog-label').textContent = '🎉 All done!';
+        el("prog-bar").style.width = "100%";
+        el("prog-label").textContent = "🎉 All done!";
         setTimeout(startCake, 900);
       }
     }, 3000);
   } else {
-    btns[sel].classList.add('wrong');
+    btns[sel].classList.add("wrong");
     fb.textContent = `❌ Oops! Hint: ${q.hint}`;
-    fb.className = 'q-feedback bad';
+    fb.className = "q-feedback bad";
     setTimeout(() => loadQ(S.qi), 5000);
   }
 }
@@ -298,39 +368,54 @@ function handleQ(sel) {
    CAKE SEQUENCE
 ════════════════════════════════════════════ */
 function startCake() {
-  showScreen('screen-cake');
-  makeStars('stars-cake', 80);
+  showScreen("screen-cake");
+  makeStars("stars-cake", 80);
 
-  const pre   = el('cake-pre');
-  const wrap  = el('cake-wrap');
-  const cands = el('c-candles');
-  const fl    = el('f-left');
-  const fr    = el('f-right');
-  const hint  = el('cake-hint');
-  const blow  = el('btn-blow');
+  const pre = el("cake-pre");
+  const wrap = el("cake-wrap");
+  const cands = el("c-candles");
+  const fl = el("f-left");
+  const fr = el("f-right");
+  const hint = el("cake-hint");
+  const blow = el("btn-blow");
 
   // reset
-  wrap.classList.remove('show');
-  cands.classList.remove('show','blown');
-  fl.classList.remove('active');
-  fr.classList.remove('active');
-  hint.classList.remove('show');
-  blow.classList.add('hidden');
+  wrap.classList.remove("show");
+  cands.classList.remove("show", "blown");
+  fl.classList.remove("active");
+  fr.classList.remove("active");
+  hint.classList.remove("show");
+  blow.classList.add("hidden");
   blow.disabled = false;
 
-  t(() => { pre.textContent = 'Your birthday cake is arriving… 🎂'; wrap.classList.add('show'); }, 350);
-  t(() => { pre.textContent = 'Lighting the candles… ✨'; cands.classList.add('show'); }, 1700);
-  t(() => { pre.textContent = 'Sparkling fountains for you! 💜'; fl.classList.add('active'); fr.classList.add('active'); sideBurst(); }, 2700);
-  t(() => { pre.textContent = 'Make a wish! 🌟'; hint.classList.add('show'); blow.classList.remove('hidden'); }, 3600);
+  t(() => {
+    pre.textContent = "Your birthday cake is arriving… 🎂";
+    wrap.classList.add("show");
+  }, 350);
+  t(() => {
+    pre.textContent = "Lighting the candles… ✨";
+    cands.classList.add("show");
+  }, 1700);
+  t(() => {
+    pre.textContent = "Sparkling fountains for you! 💜";
+    fl.classList.add("active");
+    fr.classList.add("active");
+    sideBurst();
+  }, 2700);
+  t(() => {
+    pre.textContent = "Make a wish! 🌟";
+    hint.classList.add("show");
+    blow.classList.remove("hidden");
+  }, 3600);
 }
 
 function blowCandles() {
-  el('btn-blow').disabled = true;
-  el('c-candles').classList.add('blown');
-  el('f-left').classList.remove('active');
-  el('f-right').classList.remove('active');
-  el('cake-pre').textContent = 'Wooooow! 🎉 Now open your gift…';
-  el('cake-hint').textContent = '';
+  el("btn-blow").disabled = true;
+  el("c-candles").classList.add("blown");
+  el("f-left").classList.remove("active");
+  el("f-right").classList.remove("active");
+  el("cake-pre").textContent = "Wooooow! 🎉 Now open your gift…";
+  el("cake-hint").textContent = "";
   bigBurst();
   setTimeout(startGift, 1800);
 }
@@ -339,93 +424,96 @@ function blowCandles() {
    GIFT SEQUENCE
 ════════════════════════════════════════════ */
 function startGift() {
-  showScreen('screen-gift');
-  makeStars('stars-gift', 80);
+  showScreen("screen-gift");
+  makeStars("stars-gift", 80);
   initScratchCard();
 }
 
 function openGift() {
   bigBurst();
-  setTimeout(() => { bigBurst(); }, 400);
+  setTimeout(() => {
+    bigBurst();
+  }, 400);
   setTimeout(startFinal, 1500);
 }
 /* ════════════════════════════════════════════
    SCRATCH CARD
 ════════════════════════════════════════════ */
 function initScratchCard() {
-  const canvas  = el('scratch-canvas');
-  const wrap    = canvas.parentElement;
-  const hint    = el('scratch-hint-overlay');
-  const bar     = el('scratch-progress-bar');
-  const label   = el('scratch-progress-label');
-  const btnDone = el('btn-scratch-done');
+  const canvas = el("scratch-canvas");
+  const wrap = canvas.parentElement;
+  const hint = el("scratch-hint-overlay");
+  const bar = el("scratch-progress-bar");
+  const label = el("scratch-progress-label");
+  const btnDone = el("btn-scratch-done");
 
   // Size canvas to match its CSS size
   const rect = wrap.getBoundingClientRect();
-  canvas.width  = rect.width  || 420;
+  canvas.width = rect.width || 420;
   canvas.height = rect.height || 280;
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
 
   // ── Draw the scratch surface ──
   // Gold/purple gradient background
   const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  grad.addColorStop(0,   '#7c3aed');
-  grad.addColorStop(0.5, '#a855f7');
-  grad.addColorStop(1,   '#ec4899');
+  grad.addColorStop(0, "#7c3aed");
+  grad.addColorStop(0.5, "#a855f7");
+  grad.addColorStop(1, "#ec4899");
   ctx.fillStyle = grad;
   ctx.roundRect(0, 0, canvas.width, canvas.height, 24);
   ctx.fill();
 
   // Pattern of emojis on the surface
   ctx.font = `${Math.round(canvas.width / 10)}px serif`;
-  ctx.textAlign = 'center';
+  ctx.textAlign = "center";
   ctx.globalAlpha = 0.18;
-  const emojis = ['🎁','💜','✨','🎂','🌟','🎉'];
+  const emojis = ["🎁", "💜", "✨", "🎂", "🌟", "🎉"];
   for (let row = 0; row < 5; row++) {
     for (let col = 0; col < 7; col++) {
       const emoji = emojis[(row * 7 + col) % emojis.length];
-      ctx.fillText(emoji,
+      ctx.fillText(
+        emoji,
         (col + 0.5) * (canvas.width / 6),
-        (row + 0.5) * (canvas.height / 4)
+        (row + 0.5) * (canvas.height / 4),
       );
     }
   }
   ctx.globalAlpha = 1;
 
   // "Scratch me!" text in centre
-  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.fillStyle = "rgba(255,255,255,0.9)";
   ctx.font = `bold ${Math.round(canvas.width / 12)}px Nunito, sans-serif`;
-  ctx.textAlign = 'center';
-  ctx.fillText('🎁 Scratch to Reveal! 🎁', canvas.width / 2, canvas.height / 2);
+  ctx.textAlign = "center";
+  ctx.fillText("🎁 Scratch to Reveal! 🎁", canvas.width / 2, canvas.height / 2);
 
   // ── Scratch logic ──
   let isScratching = false;
-  let hasStarted   = false;
-  let completed    = false;
+  let hasStarted = false;
+  let completed = false;
 
   // Use destination-out to erase the top layer
-  ctx.globalCompositeOperation = 'destination-out';
+  ctx.globalCompositeOperation = "destination-out";
 
   function getPos(e) {
     const r = canvas.getBoundingClientRect();
     const src = e.touches ? e.touches[0] : e;
     return {
-      x: (src.clientX - r.left) * (canvas.width  / r.width),
-      y: (src.clientY - r.top)  * (canvas.height / r.height)
+      x: (src.clientX - r.left) * (canvas.width / r.width),
+      y: (src.clientY - r.top) * (canvas.height / r.height),
     };
   }
 
   function scratch(x, y) {
     ctx.beginPath();
-    ctx.arc(x, y, 28, 0, Math.PI * 2);   // brush size — increase for bigger eraser
+    ctx.arc(x, y, 28, 0, Math.PI * 2); // brush size — increase for bigger eraser
     ctx.fill();
   }
 
   function calcProgress() {
-    const data   = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-    let cleared  = 0;
-    const total  = canvas.width * canvas.height;
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let cleared = 0;
+    const total = canvas.width * canvas.height;
     // alpha === 0 means pixel is cleared (scratched)
     for (let i = 3; i < data.length; i += 4) {
       if (data[i] < 20) cleared++;
@@ -443,25 +531,25 @@ function initScratchCard() {
     // Hide hint once they start
     if (!hasStarted) {
       hasStarted = true;
-      hint.classList.add('hide');
+      hint.classList.add("hide");
     }
 
     // Update progress every ~10 events to avoid perf hit
     if (Math.random() < 0.15) {
       const pct = calcProgress();
-      bar.style.width   = `${Math.min(pct, 100)}%`;
+      bar.style.width = `${Math.min(pct, 100)}%`;
       label.textContent = `${Math.min(pct, 100)}% scratched`;
 
       if (pct >= 60 && !completed) {
         completed = true;
         // Auto-clear remaining surface
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        bar.style.width   = '100%';
-        label.textContent = '100% scratched 🎉';
+        bar.style.width = "100%";
+        label.textContent = "100% scratched 🎉";
         // Show celebration & button
         bigBurst();
         setTimeout(() => {
-          btnDone.classList.remove('hidden');
+          btnDone.classList.remove("hidden");
           miniConfetti();
         }, 400);
       }
@@ -469,91 +557,109 @@ function initScratchCard() {
   }
 
   // Mouse events
-  canvas.addEventListener('mousedown', (e) => { isScratching = true; const p = getPos(e); scratch(p.x, p.y); });
-  canvas.addEventListener('mousemove', onScratch);
-  canvas.addEventListener('mouseup',   () => isScratching = false);
-  canvas.addEventListener('mouseleave',() => isScratching = false);
+  canvas.addEventListener("mousedown", (e) => {
+    isScratching = true;
+    const p = getPos(e);
+    scratch(p.x, p.y);
+  });
+  canvas.addEventListener("mousemove", onScratch);
+  canvas.addEventListener("mouseup", () => (isScratching = false));
+  canvas.addEventListener("mouseleave", () => (isScratching = false));
 
   // Touch events
-  canvas.addEventListener('touchstart', (e) => { e.preventDefault(); isScratching = true; const p = getPos(e); scratch(p.x, p.y); }, { passive: false });
-  canvas.addEventListener('touchmove',  onScratch, { passive: false });
-  canvas.addEventListener('touchend',   () => isScratching = false);
+  canvas.addEventListener(
+    "touchstart",
+    (e) => {
+      e.preventDefault();
+      isScratching = true;
+      const p = getPos(e);
+      scratch(p.x, p.y);
+    },
+    { passive: false },
+  );
+  canvas.addEventListener("touchmove", onScratch, { passive: false });
+  canvas.addEventListener("touchend", () => (isScratching = false));
 
   // Reset button states
-  btnDone.classList.add('hidden');
+  btnDone.classList.add("hidden");
   btnDone.disabled = false;
-  hint.classList.remove('hide');
+  hint.classList.remove("hide");
 }
 /* ════════════════════════════════════════════
    FINAL MESSAGES + FIREWORKS
 ════════════════════════════════════════════ */
 function startFinal() {
-  showScreen('screen-final');
-  makeStars('stars-final', 80);
+  showScreen("screen-final");
+  makeStars("stars-final", 80);
   spawnHearts();
   startEmojiRain();
 
   // Reset states
-  el('envelope-stage').classList.remove('hidden');
-  el('final-inner').classList.add('hidden');
-  el('msg-card-1').classList.remove('show');
-  el('msg-card-2').classList.remove('show');
-  el('final-replay').classList.remove('show');
-  el('msg-body-1').innerHTML = '';
-  el('msg-body-2').innerHTML = '';
+  el("envelope-stage").classList.remove("hidden");
+  el("final-inner").classList.add("hidden");
+  el("msg-card-1").classList.remove("show");
+  el("msg-card-2").classList.remove("show");
+  el("final-replay").classList.remove("show");
+  el("msg-body-1").innerHTML = "";
+  el("msg-body-2").innerHTML = "";
 
   // Reset envelope parts
-  el('env-flap').classList.remove('open');
-  el('env-seal').classList.remove('broken');
-  el('env-letter-peek').classList.remove('rise');
-  el('envelope-wrap').classList.remove('fly-away', 'shake');
+  el("env-flap").classList.remove("open");
+  el("env-seal").classList.remove("broken");
+  el("env-letter-peek").classList.remove("rise");
+  el("envelope-wrap").classList.remove("fly-away", "shake");
+  el("reasons-card").classList.remove("show");
+  el("reasons-list").innerHTML = "";
 
   // Shake envelope after 1.5s to hint it's interactive
   t(() => {
-    el('envelope-wrap').classList.add('shake');
-    setTimeout(() => el('envelope-wrap').classList.remove('shake'), 700);
+    el("envelope-wrap").classList.add("shake");
+    setTimeout(() => el("envelope-wrap").classList.remove("shake"), 700);
   }, 1500);
 }
 
 function openLetter() {
   // Disable button to prevent double click
-  el('btn-open-letter').disabled = true;
+  el("btn-open-letter").disabled = true;
 
   // Step 1 — break the wax seal (0ms)
-  el('env-seal').classList.add('broken');
+  el("env-seal").classList.add("broken");
 
   // Step 2 — open the flap (300ms)
-  t(() => el('env-flap').classList.add('open'), 300);
+  t(() => el("env-flap").classList.add("open"), 300);
 
   // Step 3 — letter rises out (600ms)
-  t(() => el('env-letter-peek').classList.add('rise'), 600);
+  t(() => el("env-letter-peek").classList.add("rise"), 600);
 
   // Step 4 — envelope flies away (1800ms)
   t(() => {
-    el('envelope-wrap').classList.add('fly-away');
-    el('envelope-wrap').style.animation = 'envFlyAway 0.9s var(--ease-out) forwards';
+    el("envelope-wrap").classList.add("fly-away");
+    el("envelope-wrap").style.animation =
+      "envFlyAway 0.9s var(--ease-out) forwards";
   }, 1800);
 
   // Step 5 — show messages (2600ms)
   t(() => {
-    el('envelope-stage').classList.add('hidden');
-    el('final-inner').classList.remove('hidden');
+    el("envelope-stage").classList.add("hidden");
+    el("final-inner").classList.remove("hidden");
     bigBurst();
 
-    const card1  = el('msg-card-1');
-    const card2  = el('msg-card-2');
-    const replay = el('final-replay');
+    const card1 = el("msg-card-1");
+    const card2 = el("msg-card-2");
+    const replay = el("final-replay");
 
     t(() => {
-      card1.classList.add('show');
+      card1.classList.add("show");
       t(() => {
-        typeText('msg-body-1', MSG1, 28, () => {
+        typeText("msg-body-1", MSG1, 28, () => {
           t(() => {
-            card2.classList.add('show');
+            card2.classList.add("show");
             t(() => {
-              typeText('msg-body-2', MSG2, 28, () => {
+              typeText("msg-body-2", MSG2, 28, () => {
                 t(() => runFireworks(), 400);
-                t(() => replay.classList.add('show'), 5000);
+                // Show 14 Reasons after a short breather
+                t(() => showReasons(), 1200);
+                t(() => replay.classList.add("show"), 6000);
               });
             }, 400);
           }, 600);
@@ -566,12 +672,12 @@ function openLetter() {
 /* ── Typing effect ── */
 function typeText(elId, text, speed, onDone) {
   const target = el(elId);
-  target.innerHTML = '';
+  target.innerHTML = "";
   let i = 0;
   // cursor
-  const cursor = document.createElement('span');
-  cursor.className = 'cursor';
-  cursor.setAttribute('aria-hidden','true');
+  const cursor = document.createElement("span");
+  cursor.className = "cursor";
+  cursor.setAttribute("aria-hidden", "true");
   target.appendChild(cursor);
 
   function tick() {
@@ -589,69 +695,124 @@ function typeText(elId, text, speed, onDone) {
 
 /* ── Fireworks ── */
 function runFireworks() {
-  if (typeof confetti !== 'function') return;
+  if (typeof confetti !== "function") return;
   const end = Date.now() + 5000;
-  const colors = ['#a855f7','#d8b4fe','#ec4899','#fbbf24','#ffffff','#8b5cf6'];
+  const colors = [
+    "#a855f7",
+    "#d8b4fe",
+    "#ec4899",
+    "#fbbf24",
+    "#ffffff",
+    "#8b5cf6",
+  ];
   (function frame() {
-    confetti({ particleCount: 22, spread: 70, startVelocity: 45, gravity: 0.8,
-               origin: { x: Math.random(), y: Math.random() * 0.5 }, colors });
+    confetti({
+      particleCount: 22,
+      spread: 70,
+      startVelocity: 45,
+      gravity: 0.8,
+      origin: { x: Math.random(), y: Math.random() * 0.5 },
+      colors,
+    });
     if (Date.now() < end) requestAnimationFrame(frame);
   })();
 }
 
 /* ── Floating hearts ── */
 function spawnHearts() {
-  const c = el('float-hearts');
-  if (!c) return; c.innerHTML = '';
-  const em = ['💜','✨','🌟','💫','🎉','💖','🌸','⭐','🎂','🪄'];
+  const c = el("float-hearts");
+  if (!c) return;
+  c.innerHTML = "";
+  const em = ["💜", "✨", "🌟", "💫", "🎉", "💖", "🌸", "⭐", "🎂", "🪄"];
   for (let i = 0; i < 28; i++) {
-    const s = document.createElement('span');
-    s.className = 'fheart';
+    const s = document.createElement("span");
+    s.className = "fheart";
     s.textContent = em[Math.floor(Math.random() * em.length)];
-    s.style.cssText = `left:${(Math.random()*94).toFixed(1)}%;--dur:${(Math.random()*4+5).toFixed(1)}s;--del:${(Math.random()*5).toFixed(1)}s;font-size:${(Math.random()*1.2+0.9).toFixed(1)}rem`;
+    s.style.cssText = `left:${(Math.random() * 94).toFixed(1)}%;--dur:${(Math.random() * 4 + 5).toFixed(1)}s;--del:${(Math.random() * 5).toFixed(1)}s;font-size:${(Math.random() * 1.2 + 0.9).toFixed(1)}rem`;
     c.appendChild(s);
   }
 }
+
+/* ════════════════════════════════════════════
+   14 REASONS WE LOVE YOU
+════════════════════════════════════════════ */
+function showReasons() {
+  const card = el("reasons-card");
+  const list = el("reasons-list");
+  if (!card || !list) return;
+
+  // Build all items (hidden)
+  list.innerHTML = "";
+  REASONS.forEach((r, i) => {
+    const li = document.createElement("li");
+    li.className = "reason-item";
+    li.innerHTML = `
+      <span class="reason-num">${i + 1}</span>
+      <span class="reason-emoji">${r.emoji}</span>
+      <span class="reason-text">${r.text}</span>
+    `;
+    list.appendChild(li);
+  });
+
+  // Fade the card in
+  card.classList.add("show");
+
+  // Stagger each item in with 180ms gap
+  const items = list.querySelectorAll(".reason-item");
+  items.forEach((item, i) => {
+    t(() => {
+      item.classList.add("show");
+      // Mini confetti every 7th reason
+      if ((i + 1) % 7 === 0) miniConfetti();
+    }, i * 180);
+  });
+}
+
 /* ════════════════════════════════════════════
    BTS EMOJI RAIN
 ════════════════════════════════════════════ */
 function startEmojiRain() {
-  const container = el('emoji-rain-container');
+  const container = el("emoji-rain-container");
   if (!container) return;
-  container.innerHTML = '';
+  container.innerHTML = "";
 
   // BTS-themed emoji set
   const emojis = [
-    '💜','💜','💜',   // purple hearts — most frequent
-    '⭐','⭐',
-    '🎵','🎵',
-    '✨','✨',
-    '💫',
-    '🌟',
-    '🎶',
-    '🎤',
-    '🪄',
-    '🌸',
+    "💜",
+    "💜",
+    "💜", // purple hearts — most frequent
+    "⭐",
+    "⭐",
+    "🎵",
+    "🎵",
+    "✨",
+    "✨",
+    "💫",
+    "🌟",
+    "🎶",
+    "🎤",
+    "🪄",
+    "🌸",
   ];
 
-  const TOTAL = 55;   // number of simultaneous falling emojis
+  const TOTAL = 55; // number of simultaneous falling emojis
 
   for (let i = 0; i < TOTAL; i++) {
-    const span = document.createElement('span');
-    span.className = 'rain-emoji';
+    const span = document.createElement("span");
+    span.className = "rain-emoji";
     span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
     // Random horizontal position
-    const left    = (Math.random() * 100).toFixed(1);
+    const left = (Math.random() * 100).toFixed(1);
     // Random fall speed (3s – 7s) — stagger so they don't all arrive together
-    const dur     = (Math.random() * 4 + 3).toFixed(2);
+    const dur = (Math.random() * 4 + 3).toFixed(2);
     // Random delay so rain fills screen continuously from the start
-    const delay   = (Math.random() * -7).toFixed(2);   // negative = already mid-fall
+    const delay = (Math.random() * -7).toFixed(2); // negative = already mid-fall
     // Slight random rotation drift
-    const sRot    = `${(Math.random() * 20 - 10).toFixed(1)}deg`;
-    const eRot    = `${(Math.random() * 60 - 10).toFixed(1)}deg`;
+    const sRot = `${(Math.random() * 20 - 10).toFixed(1)}deg`;
+    const eRot = `${(Math.random() * 60 - 10).toFixed(1)}deg`;
     // Random size variation
-    const size    = (Math.random() * 0.8 + 1).toFixed(2);
+    const size = (Math.random() * 0.8 + 1).toFixed(2);
 
     span.style.cssText = [
       `left: ${left}%`,
@@ -660,7 +821,7 @@ function startEmojiRain() {
       `--fall-del: ${delay}s`,
       `--start-rot: ${sRot}`,
       `--end-rot: ${eRot}`,
-    ].join(';');
+    ].join(";");
 
     container.appendChild(span);
   }
@@ -668,21 +829,64 @@ function startEmojiRain() {
 /* ════════════════════════════════════════════
    CONFETTI HELPERS
 ════════════════════════════════════════════ */
-const COLS = ['#a855f7','#d8b4fe','#ec4899','#fbbf24','#ffffff','#8b5cf6'];
+const COLS = ["#a855f7", "#d8b4fe", "#ec4899", "#fbbf24", "#ffffff", "#8b5cf6"];
 function miniConfetti() {
-  if (typeof confetti !== 'function') return;
-  confetti({ particleCount:40, spread:55, origin:{y:0.65}, scalar:0.88, colors:COLS });
+  if (typeof confetti !== "function") return;
+  confetti({
+    particleCount: 40,
+    spread: 55,
+    origin: { y: 0.65 },
+    scalar: 0.88,
+    colors: COLS,
+  });
 }
 function sideBurst() {
-  if (typeof confetti !== 'function') return;
-  confetti({ particleCount:90, spread:85, angle:60,  origin:{x:0.1,y:0.72}, colors:COLS });
-  confetti({ particleCount:90, spread:85, angle:120, origin:{x:0.9,y:0.72}, colors:COLS });
+  if (typeof confetti !== "function") return;
+  confetti({
+    particleCount: 90,
+    spread: 85,
+    angle: 60,
+    origin: { x: 0.1, y: 0.72 },
+    colors: COLS,
+  });
+  confetti({
+    particleCount: 90,
+    spread: 85,
+    angle: 120,
+    origin: { x: 0.9, y: 0.72 },
+    colors: COLS,
+  });
 }
 function bigBurst() {
-  if (typeof confetti !== 'function') return;
-  confetti({ particleCount:220, spread:100, origin:{y:0.45}, colors:COLS });
-  setTimeout(()=>confetti({ particleCount:130, spread:120, angle:60,  origin:{x:0.1,y:0.55}, colors:COLS }), 180);
-  setTimeout(()=>confetti({ particleCount:130, spread:120, angle:120, origin:{x:0.9,y:0.55}, colors:COLS }), 320);
+  if (typeof confetti !== "function") return;
+  confetti({
+    particleCount: 220,
+    spread: 100,
+    origin: { y: 0.45 },
+    colors: COLS,
+  });
+  setTimeout(
+    () =>
+      confetti({
+        particleCount: 130,
+        spread: 120,
+        angle: 60,
+        origin: { x: 0.1, y: 0.55 },
+        colors: COLS,
+      }),
+    180,
+  );
+  setTimeout(
+    () =>
+      confetti({
+        particleCount: 130,
+        spread: 120,
+        angle: 120,
+        origin: { x: 0.9, y: 0.55 },
+        colors: COLS,
+      }),
+    320,
+  );
 }
 
 /* ════════════════════════════════════════════
@@ -690,33 +894,37 @@ function bigBurst() {
 ════════════════════════════════════════════ */
 function resetAll() {
   clrTimers();
-  S.qi = 0; S.correct = 0; S.locked = false;
+  S.qi = 0;
+  S.correct = 0;
+  S.locked = false;
   updateChip();
-  el('prog-bar').style.width = '0%';
-  el('prog-label').textContent = '1 / 14';
+  el("prog-bar").style.width = "0%";
+  el("prog-label").textContent = "1 / 14";
   // hide all screens
-  document.querySelectorAll('.screen').forEach(s => { s.classList.remove('active','exit'); });
-  showScreen('screen-landing');
-  makeStars('stars-landing', 90);
+  document.querySelectorAll(".screen").forEach((s) => {
+    s.classList.remove("active", "exit");
+  });
+  showScreen("screen-landing");
+  makeStars("stars-landing", 90);
 }
 
 /* ════════════════════════════════════════════
    EVENT LISTENERS
 ════════════════════════════════════════════ */
-el('btn-start').addEventListener('click', () => {
-  showScreen('screen-quiz');
-  makeStars('stars-quiz', 80);
+el("btn-start").addEventListener("click", () => {
+  showScreen("screen-quiz");
+  makeStars("stars-quiz", 80);
   setTimeout(() => loadQ(0), 280);
 });
 
-el('btn-blow').addEventListener('click', blowCandles);
-el('btn-scratch-done').addEventListener('click', openGift);
-el('btn-open-letter').addEventListener('click', openLetter);
-el('envelope-wrap').addEventListener('click', openLetter);  // clicking envelope also works
+el("btn-blow").addEventListener("click", blowCandles);
+el("btn-scratch-done").addEventListener("click", openGift);
+el("btn-open-letter").addEventListener("click", openLetter);
+el("envelope-wrap").addEventListener("click", openLetter); // clicking envelope also works
 
-el('btn-replay').addEventListener('click', resetAll);
+el("btn-replay").addEventListener("click", resetAll);
 
 /* ════════════════════════════════════════════
    BOOT
 ════════════════════════════════════════════ */
-window.addEventListener('load', runIntro);
+window.addEventListener("load", runIntro);

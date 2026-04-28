@@ -960,6 +960,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding-bottom: 60px;  /* ← breathing room so last item isn't clipped */
 }
 .final-title {
   font-family: "Playfair Display", serif;
@@ -1578,7 +1579,8 @@ button {
 /* Override the final screen background */
 #screen-final {
   background: transparent !important;
-  overflow: hidden;
+  overflow-y: auto;   /* ← was 'hidden', must allow scroll */
+  overflow-x: hidden;
 }
 
 /* Aurora container — sits behind everything */
@@ -1768,4 +1770,110 @@ button {
     opacity: 0;
     transform: translateY(110vh) rotate(var(--end-rot, 30deg)) scale(1.1);
   }
+}
+
+/* ═══════════════════════════════════════
+   14 REASONS WE LOVE YOU
+═══════════════════════════════════════ */
+.reasons-card {
+  background: linear-gradient(
+    145deg,
+    rgba(124, 58, 237, 0.15),
+    rgba(236, 72, 153, 0.08)
+  );
+  border: 1px solid rgba(192, 132, 252, 0.28);
+  border-radius: 24px;
+  padding: clamp(20px, 4vw, 36px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.reasons-card.show {
+  opacity: 1;
+  transform: none;
+}
+
+.reasons-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.reasons-crown {
+  font-size: 1.5rem;
+  animation: bobFloat 3s ease-in-out infinite alternate;
+}
+.reasons-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  font-weight: 700;
+  background: var(--grad-name);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 5s ease-in-out infinite;
+  text-align: center;
+}
+
+.reasons-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+}
+
+/* Each reason item starts invisible, slides in */
+.reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(192, 132, 252, 0.1);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out),
+    background 0.2s ease;
+}
+.reason-item.show {
+  opacity: 1;
+  transform: none;
+}
+.reason-item:hover {
+  background: rgba(168, 85, 247, 0.1);
+}
+
+.reason-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #fff;
+  margin-top: 1px;
+}
+
+.reason-emoji {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.reason-text {
+  font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+  color: var(--text);
+  line-height: 1.55;
+  font-weight: 600;
 }

@@ -100,20 +100,8 @@
       <p class="cake-pre" id="cake-pre">You unlocked the surprise! 💜</p>
       <div
         style="position:relative;width:320px;min-height:320px;display:flex;align-items:flex-end;justify-content:center;">
-        <!-- fountains -->
-        <div class="fountain fountain-l" id="f-left">
-          <div class="f-stem">
-            <span class="f-spark"></span><span class="f-spark"></span><span class="f-spark"></span>
-          </div>
-        </div>
-        <div class="fountain fountain-r" id="f-right">
-          <div class="f-stem">
-            <span class="f-spark"></span><span class="f-spark"></span><span class="f-spark"></span>
-          </div>
-        </div>
         <!-- cake -->
         <div class="cake-wrap" id="cake-wrap">
-
           <!-- fountains OUTSIDE c-body, siblings to it -->
           <div class="fountain fountain-l" id="f-left">
             <div class="f-stem">
@@ -163,141 +151,152 @@
      GIFT
 ════════════════════════════════════ -->
   <!-- ══ SCRATCH CARD SCREEN ══ -->
-<section class="screen" id="screen-gift" aria-label="Scratch card surprise">
-  <div class="orbs" aria-hidden="true">
-    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-  </div>
-  <div class="stars-canvas" id="stars-gift" aria-hidden="true"></div>
+  <section class="screen" id="screen-gift" aria-label="Scratch card surprise">
+    <div class="orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="stars-canvas" id="stars-gift" aria-hidden="true"></div>
 
-  <div class="scratch-stage" id="scratch-stage">
-    <p class="scratch-pre">A gift is waiting for you… 🎁</p>
-    <p class="scratch-sub">Scratch the card to reveal your surprise! 💅</p>
+    <div class="scratch-stage" id="scratch-stage">
+      <p class="scratch-pre">A gift is waiting for you… 🎁</p>
+      <p class="scratch-sub">Scratch the card to reveal your surprise! 💅</p>
 
-    <!-- The scratch card -->
-    <div class="scratch-card-wrap">
-      <!-- BOTTOM LAYER — the revealed content -->
-      <div class="scratch-reveal" id="scratch-reveal">
-        <div class="reveal-inner">
-          <div class="reveal-emoji">🎂</div>
-          <div class="reveal-title">You did it!</div>
-          <div class="reveal-msg">Your birthday letter<br>is waiting… 💜</div>
-          <div class="reveal-stars">✨ 💜 ✨</div>
+      <!-- The scratch card -->
+      <div class="scratch-card-wrap">
+        <!-- BOTTOM LAYER — the revealed content -->
+        <div class="scratch-reveal" id="scratch-reveal">
+          <div class="reveal-inner">
+            <div class="reveal-emoji">🎂</div>
+            <div class="reveal-title">You did it!</div>
+            <div class="reveal-msg">Your birthday letter<br>is waiting… 💜</div>
+            <div class="reveal-stars">✨ 💜 ✨</div>
+          </div>
+        </div>
+
+        <!-- TOP LAYER — the scratch surface (canvas) -->
+        <canvas id="scratch-canvas" class="scratch-canvas" aria-label="Scratch here to reveal your gift"
+          role="img"></canvas>
+
+        <!-- Scratch hint overlay -->
+        <div class="scratch-hint-overlay" id="scratch-hint-overlay">
+          <span class="scratch-finger">👆</span>
+          <span class="scratch-hint-text">Scratch here!</span>
         </div>
       </div>
 
-      <!-- TOP LAYER — the scratch surface (canvas) -->
-      <canvas id="scratch-canvas" class="scratch-canvas"
-        aria-label="Scratch here to reveal your gift"
-        role="img"></canvas>
-
-      <!-- Scratch hint overlay -->
-      <div class="scratch-hint-overlay" id="scratch-hint-overlay">
-        <span class="scratch-finger">👆</span>
-        <span class="scratch-hint-text">Scratch here!</span>
+      <!-- Progress bar -->
+      <div class="scratch-progress-wrap">
+        <div class="scratch-progress-track">
+          <div class="scratch-progress-bar" id="scratch-progress-bar"></div>
+        </div>
+        <span class="scratch-progress-label" id="scratch-progress-label">0% scratched</span>
       </div>
-    </div>
 
-    <!-- Progress bar -->
-    <div class="scratch-progress-wrap">
-      <div class="scratch-progress-track">
-        <div class="scratch-progress-bar" id="scratch-progress-bar"></div>
-      </div>
-      <span class="scratch-progress-label" id="scratch-progress-label">0% scratched</span>
+      <!-- Continue button (shown after enough scratched) -->
+      <button class="btn-primary pulse-glow hidden" id="btn-scratch-done" type="button">
+        💌 Open Your Birthday Letter
+      </button>
     </div>
-
-    <!-- Continue button (shown after enough scratched) -->
-    <button class="btn-primary pulse-glow hidden" id="btn-scratch-done" type="button">
-      💌 Open Your Birthday Letter
-    </button>
-  </div>
-</section>
+  </section>
 
   <!-- ════════════════════════════════════
      FINAL MESSAGES
 ════════════════════════════════════ -->
   <!-- ══ FINAL MESSAGE SCREEN ══ -->
-<section class="screen" id="screen-final" aria-label="Birthday messages">
-  <!-- Aurora Northern Lights -->
-<div class="aurora-bg" aria-hidden="true">
-  <div class="aurora-band aurora-band-1"></div>
-  <div class="aurora-band aurora-band-2"></div>
-  <div class="aurora-band aurora-band-3"></div>
-  <div class="aurora-band aurora-band-4"></div>
-  <div class="aurora-band aurora-band-5"></div>
-  <div class="aurora-shimmer"></div>
-</div>
+  <section class="screen" id="screen-final" aria-label="Birthday messages">
+    <!-- Aurora Northern Lights -->
+    <div class="aurora-bg" aria-hidden="true">
+      <div class="aurora-band aurora-band-1"></div>
+      <div class="aurora-band aurora-band-2"></div>
+      <div class="aurora-band aurora-band-3"></div>
+      <div class="aurora-band aurora-band-4"></div>
+      <div class="aurora-band aurora-band-5"></div>
+      <div class="aurora-shimmer"></div>
+    </div>
 
-<!-- BTS Emoji Rain -->
-<div id="emoji-rain-container" aria-hidden="true"></div>
-  <div class="orbs" aria-hidden="true">
-    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-  </div>
-  <div class="stars-canvas" id="stars-final" aria-hidden="true"></div>
-  <div class="floating-hearts" id="float-hearts" aria-hidden="true"></div>
+    <!-- BTS Emoji Rain -->
+    <div id="emoji-rain-container" aria-hidden="true"></div>
+    <div class="orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="stars-canvas" id="stars-final" aria-hidden="true"></div>
+    <div class="floating-hearts" id="float-hearts" aria-hidden="true"></div>
 
-  <!-- ── ENVELOPE UNSEALING (shown first) ── -->
-  <div class="envelope-stage" id="envelope-stage">
-    <p class="env-label">A letter has arrived for you… 💜</p>
+    <!-- ── ENVELOPE UNSEALING (shown first) ── -->
+    <div class="envelope-stage" id="envelope-stage">
+      <p class="env-label">A letter has arrived for you… 💜</p>
 
-    <div class="envelope-wrap" id="envelope-wrap">
-      <!-- Envelope body -->
-      <div class="env-body">
-        <!-- Flap (top triangle that opens) -->
-        <div class="env-flap" id="env-flap"></div>
-        <!-- Inner letter peek -->
-        <div class="env-letter-peek" id="env-letter-peek">
-          <span>💜</span>
-        </div>
-        <!-- Wax seal -->
-        <div class="env-seal" id="env-seal">
-          <span class="seal-text">H</span>
-        </div>
-        <!-- Envelope front lines -->
-        <div class="env-lines">
-          <span></span><span></span><span></span>
+      <div class="envelope-wrap" id="envelope-wrap">
+        <!-- Envelope body -->
+        <div class="env-body">
+          <!-- Flap (top triangle that opens) -->
+          <div class="env-flap" id="env-flap"></div>
+          <!-- Inner letter peek -->
+          <div class="env-letter-peek" id="env-letter-peek">
+            <span>💜</span>
+          </div>
+          <!-- Wax seal -->
+          <div class="env-seal" id="env-seal">
+            <span class="seal-text">H</span>
+          </div>
+          <!-- Envelope front lines -->
+          <div class="env-lines">
+            <span></span><span></span><span></span>
+          </div>
         </div>
       </div>
+
+      <p class="env-hint" id="env-hint">Tap the envelope to open it! 💌</p>
+      <button class="btn-primary pulse-glow" id="btn-open-letter" type="button" style="margin-top:8px;">
+        💌 Open the Letter
+      </button>
     </div>
 
-    <p class="env-hint" id="env-hint">Tap the envelope to open it! 💌</p>
-    <button class="btn-primary pulse-glow" id="btn-open-letter" type="button" style="margin-top:8px;">
-      💌 Open the Letter
-    </button>
-  </div>
+    <!-- ── MESSAGES (revealed after envelope) ── -->
+    <div class="final-inner hidden" id="final-inner">
+      <h1 class="final-title">Happy Birthday, Het! 🎂</h1>
 
-  <!-- ── MESSAGES (revealed after envelope) ── -->
-  <div class="final-inner hidden" id="final-inner">
-    <h1 class="final-title">Happy Birthday, Het! 🎂</h1>
-
-    <!-- Message from Vishal -->
-    <div class="msg-card" id="msg-card-1">
-      <div class="msg-header">
-        <span class="msg-icon">💜</span>
-        <div>
-          <div class="msg-from-name">From Vishal</div>
-          <div class="msg-from-role">Your Jiju 🌟</div>
+      <!-- Message from Vishal -->
+      <div class="msg-card" id="msg-card-1">
+        <div class="msg-header">
+          <span class="msg-icon">💜</span>
+          <div>
+            <div class="msg-from-name">From Vishal</div>
+            <div class="msg-from-role">Your Jiju 🌟</div>
+          </div>
         </div>
+        <p class="msg-body" id="msg-body-1"></p>
       </div>
-      <p class="msg-body" id="msg-body-1"></p>
-    </div>
 
-    <!-- Message from Krupa -->
-    <div class="msg-card" id="msg-card-2">
-      <div class="msg-header">
-        <span class="msg-icon">🌸</span>
-        <div>
-          <div class="msg-from-name">From Krupa</div>
-          <div class="msg-from-role">Your Didi 💜</div>
+      <!-- Message from Krupa -->
+      <div class="msg-card" id="msg-card-2">
+        <div class="msg-header">
+          <span class="msg-icon">🌸</span>
+          <div>
+            <div class="msg-from-name">From Krupa</div>
+            <div class="msg-from-role">Your Didi 💜</div>
+          </div>
         </div>
+        <p class="msg-body" id="msg-body-2"></p>
       </div>
-      <p class="msg-body" id="msg-body-2"></p>
+      <!-- ── 14 REASONS WE LOVE YOU ── -->
+      <div class="reasons-card" id="reasons-card">
+        <div class="reasons-header">
+          <span class="reasons-crown">👑</span>
+          <h2 class="reasons-title">14 Reasons We Love You</h2>
+          <span class="reasons-crown">💜</span>
+        </div>
+        <ol class="reasons-list" id="reasons-list"></ol>
+      </div>
+      <div class="final-replay" id="final-replay">
+        <button class="btn-secondary" id="btn-replay" type="button">🔄 Start Over</button>
+      </div>
     </div>
-
-    <div class="final-replay" id="final-replay">
-      <button class="btn-secondary" id="btn-replay" type="button">🔄 Start Over</button>
-    </div>
-  </div>
-</section>
+  </section>
   <script src="./app.js" defer></script>
 </body>
 
